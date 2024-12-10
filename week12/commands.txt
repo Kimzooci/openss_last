@@ -1,0 +1,13 @@
+docker-compose up airflow-init
+docker-compose up -d
+docker-compose ps
+docker exec -it (폴더이름)-airflow-scheduler-1 /bin/bash
+airflow tasks test user_processing create_table 2023-01-01
+exit
+docker-compose ps
+docker exec -it (폴더이름)-airflow-worker-1 /bin/bash
+ls /tmp/
+exit
+docker exec -it (폴더이름)-postgres-1 /bin/bash
+psql -U airflow
+SELECT * FROM users;
